@@ -1,0 +1,542 @@
+print('''
+*******************************************************************************
+          |                   |                  |                     |
+ _________|________________.=""_;=.______________|_____________________|_______
+|                   |  ,-"_,=""     `"=.|                  |
+|___________________|__"=._o`"-._        `"=.______________|___________________
+          |                `"=._o`"=._      _`"=._                     |
+ _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+|                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
+|___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+          |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
+ _________|___________| ;`-.o`"=._; ." ` '`."` . "-._ /_______________|_______
+|                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
+|___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+/______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+/______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+/______/______/______/______/______/______/______/______/______/______/_____ /
+*******************************************************************************
+''')
+print("Welcome Treasure Hunter.")
+print("Your mission is to find the treasure.")
+
+island_ascii = '''
+
+
+         ____ /\ ____            _ _  - -__     -_
+        /v y \/\/    \                   --  --___   -" _
+       ____\7 \\_^_^/ \                          
+      /    V/ \/   \ ^/\            __                          _--,_
+     / \^\|/ \()^7_ \ ^|      /">^/",,\                        /"("\"\
+    /\^   / \^_() 7_\         / LX<"<,\                    _/"/"|\ )\>_
+    |^    /\ ()_|  7|        / >/ >O-,\"                 _/"_." _/ / / \"\
+          ^   \_\            ^" V"O^  V               /""_-" ,/"  /\  \ ) "-,_
+               \_\              '  \>              _-"/ ( .-/ \ !   )  \ _\"-_"\_
+ ___ ___ ______ \_\ _ _____ ___ ___ \> _ ___   _-"/_-"   / (    |  / \  | \  \_- "-_  __ _ _
+       _  _ _-   \_\   --  -   - --  \">   -<_"__" /  _/|   \ \ | /! \  \  -_( _"-<_">-- -
+              --  \_`>    _--    _ ___",">-____ _"> ""_" "--"--"-" "-"' "-"  '"  _
+                   \__">      C"" -_O   "O-'           '">        __ -  -
+  jjs    _ __()_ ___"-__"\__ __)    - O         __ - - "      - -
+                ()   _">--"> _ .-- "      - """
+                        """
+'''
+
+mountain_ascii = """                    
+                      ,d$$$$$$$$b.
+                     d$P'`Y'`Y'`?$b
+                    d'    `  '  \ `b
+                   /    |        \  \
+                  /    / \       |   \
+             _,--'        |      \    |
+           /' _/          \   |        \
+        _/' /'             |   \        `-.__
+    __/'       ,-'    /    |    |     \      `--...__
+  /'          /      |    / \     \     `-.           `\
+ /    /;;,,__-'      /   /    \            \            `-.
+/    |;;;;;;;\                                             \
+"""
+
+raft_ascii = '''
+     __________           `-.__   ^~~^-~^  ~~~--~-~-    ~ ^~~^-~^    _/`
+   ,',---\\--\\\   xxX----    `-.___^~~^-~^   ~~~^~^~^~^~^~^~  ~   __,--'  c"}
+   \`-____\\__\\\         Xxx>_---_- `----.________________,-----'       ,(_).
+    `~~~~~~~~~'                     
+'''
+
+swim_ascii = '''
+
+
+::          .:::.            ,  ,        .:.     .:::.       .:
+:::.    ..::::::::.       , (,,(,  ,   .::::. ..:::::::    .:::
+::::. .::::::::::::.    (,'     `(  .::.:::.:::::::::::.:.::::
+::::..:::::::::::::::.  (,'  ,--.  `(  .:::.::::::.:::.::::::::
+::::::::::::::::::::::. {c' ).::.\  ;(.::::.::::::::.::::::::::
+:^^^^^^^^^^^^^^^^^^^^^^ {/7/ ^^^^/  ,(^^^^^^^^^^^^^^^^^^^^^^^^^
+      "         "         ~     /  ,(   ,(-/_,    ,(-/_, .. /~>
+ ~      ~~   ~~~~      ~~    ~ /  ,( ../  _  ( . /  _  ( ~ / /
+   ~^~   ~~~~~    ~~~~    ~~~  ~~~~    ~~~ ~~~   ~~~ ~~~   ~~
+  `:::::::'  `::::::'   `::::..`:::    `::.::'   `::.::'   `::
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ '''
+
+doors_ascii = '''
+      ______
+   ,-' ;  ! `-.
+  / :  !  :  . \\
+ |_ ;   __:  ;  |
+ )| .  :)(.  !  |
+ |"    (##)  _  |
+ |  :  ;`'  (_) (
+ |  :  :  .     |
+ )_ !  ,  ;  ;  |
+ || .  .  :  :  |
+ |" .  |  :  .  |
+ |mt-2_;----.___|
+
+ '''
+
+lava_ascii = '''
+
+               (  .      )
+           )           (              )
+                 .  '   .   '  .  '  .
+        (    , )       (.   )  (   ',    )
+         .' ) ( . )    ,  ( ,     )   ( .
+      ). , ( .   (  ) ( , ')  .' (  ,    )
+     (_,) . ), ) _) _,')  (, ) '. )  ,. (' )
+ jgs^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'''
+
+labyrinth = '''
+88.._|      | `-.  | `.  -_-_ _-_  _-  _- -_ -  .'|   |.'|     |  _..88
+88   `-.._  |    |`!  |`.  -_ -__ -_ _- _-_-  .'  |.;'   |   _.!-'|  88
+88      | `-!._  |  `;!  ;. _______________ ,'| .-' |   _!.i'     |  88
+88..__  |     |`-!._ | `.| |_______________||."'|  _!.;'   |     _|..88
+88   |``"..__ |    |`";.| i|_|MMMMMMMMMMM|_|'| _!-|   |   _|..-|'    88
+88   |      |``--..|_ | `;!|l|MMoMMMMoMMM|1|.'j   |_..!-'|     |     88
+88   |      |    |   |`-,!_|_|MMMMP'YMMMM|_||.!-;'  |    |     |     88
+88___|______|____!.,.!,.!,!|d|MMMo * loMM|p|,!,.!.,.!..__|_____|_____88
+88      |     |    |  |  | |_|MMMMb,dMMMM|_|| |   |   |    |      |  88
+88      |     |    |..!-;'i|r|MPYMoMMMMoM|r| |`-..|   |    |      |  88
+88      |    _!.-j'  | _!,"|_|M<>MMMMoMMM|_||!._|  `i-!.._ |      |  88
+88     _!.-'|    | _."|  !;|1|MbdMMoMMMMM|l|`.| `-._|    |``-.._  |  88
+88..-i'     |  _.''|  !-| !|_|MMMoMMMMoMM|_|.|`-. | ``._ |     |``"..88
+88   |      |.|    |.|  !| |u|MoMMMMoMMMM|n||`. |`!   | `".    |     88
+88   |  _.-'  |  .'  |.' |/|_|MMMMoMMMMoM|_|! |`!  `,.|    |-._|     88
+88  _!"'|     !.'|  .'| .'|[@]MMMMMMMMMMM[@] \|  `. | `._  |   `-._  88
+88-'    |   .'   |.|  |/| /                 \|`.  |`!    |.|      |`-88
+88      |_.'|   .' | .' |/                   \  \ |  `.  | `._    |  88
+88     .'   | .'   |/|  /                     \ |`!   |`.|    `.  |  88
+88  _.'     !'|   .' | /                       \|  `  |  `.    |`.|  88
+'''
+
+beast_ascii = '''
+                                                                _
+                                                              _( (~\
+       _ _                        /                          ( \> > \
+   -/~/ / ~\                     :;                \       _  > /(~\/
+  || | | /\ ;\                   |l      _____     |;     ( \/ /   /
+  _\\)\)\)/ ;;;                  `8o __-~     ~\   d|      \   \  //
+ ///(())(__/~;;\                  "88p;.  -. _\_;.oP        (_._/ /
+(((__   __ \\   \                  `>,% (\  (\./)8"         ;:'  i
+)))--`.'-- (( ;,8 \               ,;%%%:  ./V^^^V'          ;.   ;.
+((\   |   /)) .,88  `: ..,,;;;;,-::::::'_::\   ||\         ;[8:   ;
+ )|  ~-~  |(|(888; ..``'::::8888oooooo.  :\`^^^/,,~--._    |88::| |
+  \ -===- /|  \8;; ``:.      oo.8888888888:`((( o.ooo8888Oo;:;:'  |
+ |_~-___-~_|   `-\.   `        `o`88888888b` )) 888b88888P""'     ;
+  ;~~~~;~~         "`--_`.       b`888888888;(.,"888b888"  ..::;-'
+   ;      ;              ~"-....  b`8888888:::::.`8888. .:;;;''
+      ;    ;                 `:::. `:::OOO:::::::.`OO' ;;;''
+ :       ;                     `.      "``::::::''    .'
+    ;                           `.   \_              /
+  ;       ;                       +:   ~~--  `:'  -';
+                                   `:         : .::/
+      ;                            ;;+_  :::. :..;;;
+'''
+
+win_ascii = '''
+                    ____...------------...____
+               _.-"` /o/__ ____ __ __  __ \o\_`"-._
+             .'     / /                    \ \     '.
+             |=====/o/======================\o\=====|
+             |____/_/________..____..________\_\____|
+             /   _/ \_     <_o#\__/#o_>     _/ \_   \
+
+              |===\!/========================\!/===|
+              |   |=|          .---.         |=|   |
+              |===|o|=========/     \========|o|===|
+              |   | |         \() ()/        | |   |
+              |===|o|======{'-.) A (.-'}=====|o|===|
+              | __/ \__     '-.\\u/.-'     __/ \__ |
+              |==== .'.'^'.'.====|====.'.'^'.'.====|
+              |  _\o/   __  {.' __  '.} _   _\o/  _|
+              `""""-""""""""""""""""""""""""""-""""`
+'''
+
+# Introduction
+print("""You are a treasure hunter searching for the biggest treasure of your
+ life. You passed the last three years following a trail of clues from Europe
+  to the Pacific Ocean. 
+
+The Pirate Black Hat was not your first choice. Nobody thinks he was very 
+successful in accumulating an immense treasure. Still, three years ago, you 
+came across a manuscript from a reliable historian stating that he was very 
+well known in the Pacific, not in the Atlantic.
+
+The manuscript describes some of his early sightings in the far corners of the 
+Pacific, confirming his stories as accurate and leaving the name of a small 
+island you had never heard before, Tora.
+""")
+
+print(island_ascii)
+
+# Setting
+print("""It has been three days since you arrived in Tora. The local tribe has 
+a legend about a fortress deep in the jungle. Pirates would be seen walking 
+towards the mountains at dusk and disappear for weeks. 
+
+The mountains would come alive at that time. The roar of a terrifying creature 
+could be heard from the distance, and eyes of fire would appear on the side of
+ the Ah’ai mountain, keeping most of the island's inhabitants away. The pirates 
+ would kill anyone who dared to follow them and learn their secrets, so the 
+ tribe learned to close themself in their huts and stay there until dawn.
+
+With time, the facts were lost and converted into bedtime stories for children.
+ They talk about a pirate with a black hat that would make anyone not in their
+  bed after sundown disappear.
+
+So here you are, deep in the jungle of Tora, near the Ah’ai mountain and 
+searching for the famous lost treasure of the pirate Black Hat.
+""")
+
+# Start game
+jungle = input("""To the right, a narrow path wanders off toward the Ah’ai 
+mountains. To the left, you can hear the sound of water.
+
+Write ‘mountain’ if you want to take the path to the Ah'ai mountain.
+Write ‘water’ if you want to go towards the water.
+Write ‘quit’ to exit.\n
+""").lower()
+
+mountain = """The path is narrow, and the trees cover the sun's light. You 
+walk for the entire day, always uphill. The steep trail is treacherous, and 
+often, you lose your step in the dark. You lose your flashlight in one of 
+your falls, and now you are using your phone as a light source, spending 
+valuable battery life.
+
+Suddenly, you see the mouth of a cavern almost invisible to the side of your 
+path. Carved around its entrance, warnings in the form of hanging skulls. And 
+you think, what better than the mountains to guard a treasure? You are deep in
+ the Ah’ai mountains now, but you continue walking, illuminating your path
+  with your smartphone.
+
+You are smart enough to leave a trail of marks in the walls of your path to 
+be able to find your way back. But it is taking too long, and you wonder if 
+you should head back and recharge your phone in the sunlight before it dies, 
+but it is too late. Your phone runs off battery. 
+
+Darkness surrounds you, and you cannot see if you are still walking the trail.
+ You lose your footing and fall to the entrains of the mountains. You are 
+ lost forever. That is not how you wanted it to end.
+"""
+
+water = """A river follows the jungle's edge a short distance from the clearing.
+ Your instinct was correct. You can see the mountains from here. The terrain 
+ is too steep to allow a fortress to be nested between them.
+
+You can see an old raft across the river, with a liana connecting the raft 
+with a tree on your side. It is covered in ivy but is still afloat.
+
+You consider how deep the river is and how likely it is to manage to swim 
+across. The river is only 100 metres wide, and you are a good swimmer. 
+The current does not look strong, and you are very hot after walking.
+
+Write ‘raft’ to choose the floating wooden structure.
+Write ‘swim’ to cross the river and refresh yourself.
+Write ‘quit’ to exit.
+ \n
+"""
+
+swim = """The water is perfect, shallow with a weak current. You start
+ swimming leisurely, enjoying its temperature, advancing fast towards 
+ the other side.
+
+You are halfway when you see something fast approaching your position. You
+ start swimming more quickly, but the creature reaches you before reaching 
+ the river bank. You can see it now. It is a gigantic python that wraps 
+ around you tight. While it exerts its force constricting you, you can see
+  his head getting near, opening his enormous jaw, ready to swallow you whole. 
+"""
+
+raft = """You unwrap the end of the liana from the tree and give a tentative 
+tug, and the raft moves, reacting to it. You try harder again, and the raft 
+separates from the opposite bank, breaking the ivy. Steadily, you pull the 
+liana, making the raft get near you. It only takes you 10 minutes. 
+
+You check the raft structure. It looks strong enough to support your weight 
+and cross the river, and there is also a pair of oars on the raft.
+
+Once safely on the raft, you start rowing slowly. The current is not strong,
+ and you cross the river faster than you estimated.
+
+On the other side of the river, you find a path leading you around the slopes
+ of the Ah’ai mountains. You walk for the entire day, but eventually, the
+  trail ends. Hidden between the jungle foliage, you spot a cave in front of you.
+
+The entrance is the size of a house door, but once you walk through, it 
+opens into a massive chamber. Stalactites decorate the cavern's ceiling. 
+At the far end, you can see three doors, each painted in a different colour: 
+red, blue, and yellow.
+
+Write ‘red’ for the red door.
+Write ‘blue’ for the blue door.
+Write ‘yellow’ for the yellow door.
+Write ‘quit’ to exit.
+\n
+"""
+
+red = """The red door feels warm in your hand. You open the door and see
+ a light at the end of the long corridor. You walk carefully, but suddenly,
+  the floor crumbles under your feet. You start falling toward what looks 
+  like hot lava running in the mountain centre. It is not possible, you think,
+   the volcano is extinct. But there is no denying where you are heading 
+   towards a scorching end.
+"""
+
+blue = """The blue door leads you to a labyrinth. You are wise to mark the 
+walls with numbers to track your path, so if you return to the same corridor,
+ you will know where to go.
+The labyrinth leads you deep into the mountain. There seems to be no end. 
+Suddenly, you hear a roar. It bounces back from every direction, making it 
+impossible to know from where it comes.
+
+You start running back, fearing to be face to face with the owner of that sound.
+ But there is no way out. The corridor suddenly closes in front of you, and you
+  are trapped. The creature is near now. You can hear its roar just at the end 
+  of the corridor. Your fate is imminent, and there is no escape. This will be 
+  your tomb.
+"""
+
+yellow = """You choose yellow. It is on the right, and your instinct tells you 
+that it leads toward the river side of the mountain, where the tribe says eyes 
+of fire watch over them.
+
+You walk for miles, more than the distance between the river and the hidden 
+entrance. You can see drops of water falling from the ceiling, making you 
+think you are under the river. But the long corridor continues.
+
+Finally, there is light ahead. Ten metres more, you reach a cavern with 
+treasure chests illuminated with lava from a pit. Two big holes on the side
+ wall show a starry sky, the eyes of fire. You found the treasure!
+"""
+
+quit_game = """You are tired and starting to doubt yourself about all this. You 
+are alone, and although the research was exciting, you are scared of what 
+lies ahead. Stories of beasts and fire do not sound so appealing now. You 
+return to the tribe village and ask for help and extra equipment."""
+
+wrong_input = """Invalid choice. End game."""
+lives = 3
+
+# First life
+# From the jungle clearing
+if lives >= 0:
+    if jungle == 'mountain':
+        print(mountain_ascii)
+        print(mountain)
+        lives -= 1
+        print(f"Lives = {lives}")
+    elif jungle == 'water':
+        choice = input(water).lower()
+        # from the water
+        if choice == 'swim':
+            print(swim)
+            print(swim_ascii)
+            lives -= 1
+            print(f"Lives = {lives}")
+        elif choice == 'raft':
+            print(raft_ascii)
+            choice = input(raft).lower()
+            if choice in "blue red yellow":
+                print(doors_ascii)
+                print()
+                # from raft
+                if choice == 'red':
+                    print(red)
+                    print(lava_ascii)
+                    lives -= 1
+                    print(f"Lives = {lives}")
+                elif choice == 'blue':
+                    print(blue)
+                    print(labyrinth)
+                    print(beast_ascii)
+                    lives -= 1
+                    print(f"Lives = {lives}")
+                elif choice == 'yellow':
+                    print(yellow)
+                    print(win_ascii)
+                # todo
+                #   elif choice == 'back':
+                #   print(jungle)
+                elif choice == 'quit':
+                    print(quit_game)
+            else:
+                print(wrong_input)
+        # todo
+        #      elif choice == 'back':
+        #       print(jungle)
+        elif choice == 'quit':
+            print(quit_game)
+        else:
+            print(wrong_input)
+    elif jungle == 'quit':
+        print(quit_game)
+    else:
+        print(wrong_input)
+
+
+else:
+    print("You have lost all you lives")
+
+# Second life
+
+if lives >= 0:
+    jungle = input("""To the right, a narrow path wanders off toward the Ah’ai 
+    mountains. To the left, you can hear the sound of water.
+
+    Write ‘mountain’ if you want to take the path to the Ah'ai mountain.
+    Write ‘water’ if you want to go towards the water.
+    Write ‘quit’ to exit.\n
+    """).lower()
+
+    if jungle == 'mountain':
+        print(mountain_ascii)
+        print(mountain)
+        lives -= 1
+        print(f"Lives = {lives}")
+    elif jungle == 'water':
+        choice = input(water).lower()
+        # from the water
+        if choice == 'swim':
+            print(swim)
+            print(swim_ascii)
+            lives -= 1
+            print(f"Lives = {lives}")
+        elif choice == 'raft':
+            print(raft_ascii)
+            choice = input(raft).lower()
+            if choice in "blue red yellow":
+                print(doors_ascii)
+                print()
+                # from raft
+                if choice == 'red':
+                    print(red)
+                    print(lava_ascii)
+                    lives -= 1
+                    print(f"Lives = {lives}")
+                elif choice == 'blue':
+                    print(blue)
+                    print(labyrinth)
+                    print(beast_ascii)
+                    lives -= 1
+                    print(f"Lives = {lives}")
+                elif choice == 'yellow':
+                    print(yellow)
+                    print(win_ascii)
+                # todo
+                #      elif choice == 'back':
+                #       print(jungle)
+                elif choice == 'quit':
+                    print(quit_game)
+            else:
+                print(wrong_input)
+        # todo
+        #      elif choice == 'back':
+        #       print(jungle)
+        elif choice == 'quit':
+            print(quit_game)
+        else:
+            print(wrong_input)
+    elif jungle == 'quit':
+        print(quit_game)
+    else:
+        print(wrong_input)
+
+
+else:
+    print("You have lost all you lives")
+
+# Third life
+
+if lives >= 0:
+    jungle = input("""To the right, a narrow path wanders off toward the Ah’ai 
+    mountains. To the left, you can hear the sound of water.
+
+    Write ‘mountain’ if you want to take the path to the Ah'ai mountain.
+    Write ‘water’ if you want to go towards the water.
+    Write ‘quit’ to exit.\n
+    """).lower()
+
+    if jungle == 'mountain':
+        print(mountain_ascii)
+        print(mountain)
+        lives -= 1
+        print(f"Lives = {lives}")
+    elif jungle == 'water':
+        choice = input(water).lower()
+        # from the water
+        if choice == 'swim':
+            print(swim)
+            print(swim_ascii)
+            lives -= 1
+            print(f"Lives = {lives}")
+        elif choice == 'raft':
+            print(raft_ascii)
+            choice = input(raft).lower()
+            if choice in "blue red yellow":
+                print(doors_ascii)
+                print()
+                # from raft
+                if choice == 'red':
+                    print(red)
+                    print(lava_ascii)
+                    lives -= 1
+                    print(f"Lives = {lives}")
+                elif choice == 'blue':
+                    print(blue)
+                    print(labyrinth)
+                    print(beast_ascii)
+                    lives -= 1
+                    print(f"Lives = {lives}")
+                elif choice == 'yellow':
+                    print(yellow)
+                    print(win_ascii)
+                # todo
+                #      elif choice == 'back':
+                #       print(jungle)
+                elif choice == 'quit':
+                    print(quit_game)
+            else:
+                print(wrong_input)
+        # todo
+        #      elif choice == 'back':
+        #       print(jungle)
+        elif choice == 'quit':
+            print(quit_game)
+        else:
+            print(wrong_input)
+    elif jungle == 'quit':
+        print(quit_game)
+    else:
+        print(wrong_input)
+
+
+else:
+    print("You have lost all you lives")
+
+
+# End
+
